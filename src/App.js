@@ -1,6 +1,12 @@
+import Theme from './library/theme/theme';
+import GlobalStyles from './library/globalStyles/globalStyles';
+
 function App() {
   return (
-    <div>Page</div>
+    <Theme>
+      <GlobalStyles />
+      <div>Page</div>
+    </Theme>
   );
 }
 
