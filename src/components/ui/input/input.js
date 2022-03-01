@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useImperativeHandle } from 'react';
 import styled from 'styled-components';
 
 const StyledInput = styled.input`
@@ -9,7 +9,16 @@ const StyledInput = styled.input`
     border: 1px solid ${props => props.theme.colors.lightGray};
 `;
 
-const Input = ({ placeholder, onChange }) => {
+const Input = React.memo(React.forwardRef(({ placeholder, onChange, required, value }, ref) => {
+
+    useImperativeHandle(ref, () => ({
+        validate() {
+            if (required && value.length <= 0) {
+                return false;
+            }
+            return true;
+        }
+    }))
 
     const onChangeHandler = useCallback(function (e) {
         let inputValue = e.target.value;
@@ -21,8 +30,10 @@ const Input = ({ placeholder, onChange }) => {
     return (
         <StyledInput
             placeholder={placeholder}
-            onChange={onChangeHandler} />
+            onChange={onChangeHandler}
+            value={value} />
     )
-}
+
+}));
 
 export default Input;
