@@ -8,7 +8,15 @@ function App() {
     <Theme>
       <GlobalStyles />
       <div>Page</div>
-      <Input />
+      <Input
+        placeholder={'Input 1'}
+        onChange={(value) => console.log(value)} />
+      <Input
+        placeholder={'Input 2'}
+        onChange={(value) => console.log(value)} />
+      <Input
+        placeholder={'Input 3'}
+        onChange={(value) => console.log(value)} />
     </Theme>
   );
 }
